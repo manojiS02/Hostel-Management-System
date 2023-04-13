@@ -1,9 +1,15 @@
 package controller;
 
 import bo.BOFactory;
+import bo.custom.ReservationBO;
+import bo.custom.RoomBO;
+import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dto.ReservationDTO;
+import dto.RoomDTO;
+import dto.StudentDTO;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;

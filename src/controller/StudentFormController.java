@@ -1,8 +1,10 @@
 package controller;
 
 import bo.BOFactory;
+import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import dto.StudentDTO;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
