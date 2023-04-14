@@ -1,31 +1,53 @@
 package bo.custom.impl;
 
 import bo.custom.ReservationBO;
+import dao.DAOFactory;
+import dao.custom.ReservationDAO;
 import dto.ReservationDTO;
 import dto.StudentDTO;
+import entity.Reservation;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReservationBOImpl implements ReservationBO {
+
+    private final ReservationDAO reservationDAO = DAOFactory.getInstance().getDAO(DAOFactory.DAOType.RESERVATION);
     @Override
     public boolean save(ReservationDTO reservationDTO) throws Exception {
-        return false;
+        return reservationDAO.save(new Reservation(
+                reservationDTO.getResID(),
+                reservationDTO.getDate(),
+                reservationDTO.getStudentID(),
+                reservationDTO.getRoomTypeID(),
+                reservationDTO.getStatus()
+        ));
     }
 
     @Override
     public boolean update(ReservationDTO reservationDTO) throws Exception {
-        return false;
+        return reservationDAO.update(new Reservation(
+                reservationDTO.getResID(),
+                reservationDTO.getDate(),
+                reservationDTO.getStudentID(),
+                reservationDTO.getRoomTypeID(),
+                reservationDTO.getStatus()
+        ));
     }
 
     @Override
     public boolean delete(String id) throws Exception {
-        return false;
+        return reservationDAO.delete(id);
     }
 
     @Override
     public ArrayList<ReservationDTO> getAll() throws Exception {
-        return null;
+        ArrayList<ReservationDTO> allReservation = new ArrayList<>();
+        ArrayList<Reservation> all = (ArrayList<Reservation>) reservationDAO.getAll();
+        for (Reservation reservartion: all) {
+            allReservation.add(new ReservationDTO(reservartion.getRes_ID(),reservartion.getDate(),reservartion.getStudentID(),reservartion.getRoomTypeID(),reservartion.getStatus()));
+        }
+        return allReservation;
     }
 
     @Override
@@ -40,6 +62,6 @@ public class ReservationBOImpl implements ReservationBO {
 
     @Override
     public String generateNewReservationID() throws IOException {
-        return null;
+        return reservationDAO.generateNewID();
     }
 }

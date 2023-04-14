@@ -127,10 +127,6 @@ public class ReservationFormController {
         });
 
         tblReservation.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            //btnDelete.setDisable(newValue == null);
-            //btnSave.setText(newValue != null ? "Update" : "Save");
-            //btnSave.setDisable(newValue == null);
-
             if (newValue != null) {
                 cmbStudentID.setValue(newValue.getStudentID());
                 cmbRoomTypeID.setValue(newValue.getRoomTypeID());
@@ -181,11 +177,12 @@ public class ReservationFormController {
     }
 
 
-    public void btnSaveOnAction(ActionEvent actionEvent) {
+    public void btnSaveOnAction(ActionEvent actionEvent) throws IOException {
         String resID = generateNewResID();
         LocalDate date = LocalDate.now();
         String studentID = cmbStudentID.getValue();
         String roomID = cmbRoomTypeID.getValue();
+
         String status = "Yes";
         if (rbNo.isSelected()) {
             status = "No";
@@ -227,7 +224,7 @@ public class ReservationFormController {
         return reservationBO.generateNewReservationID();
     }
 
-    public void btnDeleteOnAction(ActionEvent actionEvent) {
+    public void btnDeleteOnAction(ActionEvent actionEvent) throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure?", ButtonType.YES,ButtonType.NO);
         Optional<ButtonType> buttonType = alert.showAndWait();
         if (buttonType.get().equals(ButtonType.YES)) {

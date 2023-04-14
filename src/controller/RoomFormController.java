@@ -44,9 +44,8 @@ public class RoomFormController {
         }
 
         tblRoom.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            //btnDelete.setDisable(newValue == null);
+
             btnSave.setText(newValue != null ? "Update" : "Save");
-            //btnSave.setDisable(newValue == null);
 
             if (newValue != null) {
                 txtRoomTypeID.setText(newValue.getRoomTypeID());
@@ -54,10 +53,6 @@ public class RoomFormController {
                 txtKeyMoney.setText(String.valueOf(newValue.getKeyMoney()));
                 txtQty.setText(String.valueOf(newValue.getQty()));
 
-                /*txtItemCode.setDisable(false);
-                txtDescription.setDisable(false);
-                txtUnitPrice.setDisable(false);
-                txtQtyOnHand.setDisable(false);*/
             }
         });
     }
@@ -72,7 +67,7 @@ public class RoomFormController {
     public void textFields_Key_Released(KeyEvent keyEvent) {
     }
 
-    public void btnSaveOnAction(ActionEvent actionEvent) {
+    public void btnSaveOnAction(ActionEvent actionEvent) throws Exception {
         String roomTypeID=txtRoomTypeID.getText();
 
         //Regex
@@ -141,7 +136,7 @@ public class RoomFormController {
         return roomBO.roomExist(roomTypeID);
     }
 
-    public void btnDeleteOnAction(ActionEvent actionEvent) {
+    public void btnDeleteOnAction(ActionEvent actionEvent) throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure?", ButtonType.YES,ButtonType.NO);
         Optional<ButtonType> buttonType = alert.showAndWait();
         if (buttonType.get().equals(ButtonType.YES)) {

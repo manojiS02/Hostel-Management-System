@@ -1,15 +1,25 @@
 package bo.custom.impl;
 
 import bo.custom.RoomBO;
+import dao.DAOFactory;
+import dao.custom.RoomDAO;
 import dto.RoomDTO;
+import entity.Room;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class RoomBOImpl implements RoomBO {
+    private final RoomDAO roomDAO = DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ROOM);
     @Override
     public boolean save(RoomDTO roomDTO) throws Exception {
-        return false;
+        return roomDAO.save(new Room(
+                roomDTO.getRoomTypeID(),
+                roomDTO.getType(),
+                roomDTO.getKeyMoney(),
+                roomDTO.getQty()
+
+        ));
     }
 
     @Override
@@ -24,7 +34,12 @@ public class RoomBOImpl implements RoomBO {
 
     @Override
     public ArrayList<RoomDTO> getAll() throws Exception {
-        return null;
+        ArrayList<RoomDTO> allRoom = new ArrayList<>();
+        ArrayList<Room> all = (ArrayList<Room>) roomDAO.getAll();
+        for (Room room: all) {
+            allRoom.add(new RoomDTO(room.getRoomTypeID(),room.getType(),room.getKeyMoney(),room.getQty()));
+        }
+        return allRoom;
     }
 
     @Override
@@ -34,7 +49,8 @@ public class RoomBOImpl implements RoomBO {
 
     @Override
     public RoomDTO search(String id) throws IOException {
-        return null;
+        Room room =roomDAO.search(id);
+        return new RoomDTO(room.getRoomTypeID(),room.getType(),room.getKeyMoney(),room.getQty());
     }
 
     @Override

@@ -48,9 +48,7 @@ public class StudentFormController {
         }
 
         tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            //btnDelete.setDisable(newValue == null);
             btnSave.setText(newValue != null ? "Update" : "Save");
-            //btnSave.setDisable(newValue == null);
 
             if (newValue != null) {
                 txtStudentID.setText(newValue.getStudentID());
@@ -64,10 +62,6 @@ public class StudentFormController {
                     rbFemale.setSelected(true);
                 }
 
-                /*txtItemCode.setDisable(false);
-                txtDescription.setDisable(false);
-                txtUnitPrice.setDisable(false);
-                txtQtyOnHand.setDisable(false);*/
             }
         });
     }
@@ -80,7 +74,7 @@ public class StudentFormController {
         };
     }
 
-    public void btnSaveOnAction(ActionEvent actionEvent) {
+    public void btnSaveOnAction(ActionEvent actionEvent) throws Exception {
         String id = txtStudentID.getText();
 
         //Regex
@@ -153,13 +147,11 @@ public class StudentFormController {
             selectedItem.setGender(gender);
             tblStudent.refresh();
         }
-        //itemAddBtn.fire();
-        btnSave.setText("Save");
-        //txtFieldClear();
 
+        btnSave.setText("Save");
     }
 
-    public void btnDeleteOnAction(ActionEvent actionEvent) {
+    public void btnDeleteOnAction(ActionEvent actionEvent) throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure?", ButtonType.YES,ButtonType.NO);
         Optional<ButtonType> buttonType = alert.showAndWait();
         if (buttonType.get().equals(ButtonType.YES)) {
@@ -170,8 +162,10 @@ public class StudentFormController {
             tblStudent.getItems().remove(tblStudent.getSelectionModel().getSelectedItem());
             tblStudent.getSelectionModel().clearSelection();
             //initUI();
+
         }
     }
+
     private boolean existItem(String studentID) throws Exception {
         return studentBO.studentExist(studentID);
     }

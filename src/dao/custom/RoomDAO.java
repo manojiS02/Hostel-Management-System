@@ -1,4 +1,7 @@
 package dao.custom;
 
-public interface RoomDAO {
+import dao.SuperDAO;
+import entity.Room;
+
+public interface RoomDAO extends SuperDAO<Room,String> {
 }
