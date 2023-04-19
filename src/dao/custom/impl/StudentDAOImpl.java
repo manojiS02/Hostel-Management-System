@@ -1,6 +1,8 @@
 package dao.custom.impl;
 
 import dao.custom.StudentDAO;
+import dto.StudentDTO;
+import entity.Room;
 import entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,6 +10,7 @@ import org.hibernate.query.Query;
 import util.FactoryConfiguration;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
@@ -63,6 +66,7 @@ public class StudentDAOImpl implements StudentDAO {
         int status = query.executeUpdate();
         System.out.println(status);
         return  (status > 0 ? true : false);
+
     }
 
     @Override
@@ -77,6 +81,7 @@ public class StudentDAOImpl implements StudentDAO {
         Query query = session.createQuery(hql);
         List studentList = query.list();
         return  studentList;
+
     }
 
     @Override
@@ -92,7 +97,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public String generateNewID() throws IOException {
+    public String generateNewID() {
         return null;
     }
 }

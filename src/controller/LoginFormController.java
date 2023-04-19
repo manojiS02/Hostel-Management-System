@@ -14,19 +14,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginFormController {
-    public AnchorPane context;
     public JFXTextField txtUserName;
     public JFXPasswordField txtPassword;
     public JFXButton btnLogin;
+    public AnchorPane context;
     public CheckBox chbxShow;
-
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         String password=txtPassword.getText();
         String userName=txtUserName.getText();
         setUi(userName,password);
     }
 
-    private void setUi(String userName, String password) throws IOException {
+    private void setUi(String userName,String password) throws IOException {
         if (userName.equals("admin") && txtPassword.getText().equals("1234")) {
             Stage stage = (Stage) context.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/HomeForm.fxml"))));
@@ -35,7 +34,6 @@ public class LoginFormController {
             new Alert(Alert.AlertType.WARNING, "Try Again!").show();
         }
     }
-
     public void chbxShowOnAction(ActionEvent actionEvent) {
         if (chbxShow.isSelected()){
             txtPassword.setPromptText(txtPassword.getText());

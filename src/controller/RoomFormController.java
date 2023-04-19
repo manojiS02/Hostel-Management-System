@@ -22,7 +22,7 @@ public class RoomFormController {
     public JFXTextField txtKeyMoney;
     public JFXTextField txtQty;
     public JFXButton btnSave;
-    public TableView tblRoom;
+    public TableView<RoomDTO> tblRoom;
     public TableColumn colRoomTypeID;
     public TableColumn colType;
     public TableColumn colKeyMoney;
@@ -44,8 +44,9 @@ public class RoomFormController {
         }
 
         tblRoom.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-
+            //btnDelete.setDisable(newValue == null);
             btnSave.setText(newValue != null ? "Update" : "Save");
+            //btnSave.setDisable(newValue == null);
 
             if (newValue != null) {
                 txtRoomTypeID.setText(newValue.getRoomTypeID());
@@ -53,6 +54,10 @@ public class RoomFormController {
                 txtKeyMoney.setText(String.valueOf(newValue.getKeyMoney()));
                 txtQty.setText(String.valueOf(newValue.getQty()));
 
+                /*txtItemCode.setDisable(false);
+                txtDescription.setDisable(false);
+                txtUnitPrice.setDisable(false);
+                txtQtyOnHand.setDisable(false);*/
             }
         });
     }
@@ -63,7 +68,6 @@ public class RoomFormController {
             tblRoom.getItems().add(new RoomDTO(roomDTO.getRoomTypeID(), roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
         };
     }
-
     public void textFields_Key_Released(KeyEvent keyEvent) {
     }
 
@@ -129,13 +133,11 @@ public class RoomFormController {
         }
         //itemAddBtn.fire();
         btnSave.setText("Save");
-        //txtFieldClear();
     }
 
     private boolean existRoom(String roomTypeID) throws Exception {
         return roomBO.roomExist(roomTypeID);
     }
-
     public void btnDeleteOnAction(ActionEvent actionEvent) throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure?", ButtonType.YES,ButtonType.NO);
         Optional<ButtonType> buttonType = alert.showAndWait();

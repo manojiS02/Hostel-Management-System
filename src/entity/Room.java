@@ -22,7 +22,7 @@ public class Room implements SuperEntity{
     double keyMoney;
     Integer qty;
     @OneToMany(mappedBy = "room", fetch = FetchType.EAGER)
-    private List<Reservation> reservationList=new ArrayList();
+    private List<Reservartion> reservationList=new ArrayList();
 
     public Room(String roomTypeID, String type, double keyMoney, Integer qty) {
         this.roomTypeID = roomTypeID;

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Reservation implements SuperEntity{
+public class Reservartion implements SuperEntity{
     @Id
     String res_ID;
     LocalDate date;
@@ -26,7 +26,7 @@ public class Reservation implements SuperEntity{
     @ManyToOne
     private Room room;
 
-    public Reservation(String res_ID, LocalDate date, String studentID, String roomTypeID, String status) {
+    public Reservartion(String res_ID, LocalDate date, String studentID, String roomTypeID, String status) {
         this.res_ID = res_ID;
         this.date = date;
         this.studentID = studentID;

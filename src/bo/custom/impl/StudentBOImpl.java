@@ -9,9 +9,10 @@ import entity.Student;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class StudentBOImpl implements StudentBO {
 
+public class StudentBOImpl implements StudentBO {
     private final StudentDAO studentDAO = DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STUDENT);
+
     @Override
     public boolean save(StudentDTO studentDTO) throws Exception {
         return studentDAO.save(new Student(
@@ -50,10 +51,12 @@ public class StudentBOImpl implements StudentBO {
             allStudent.add(new StudentDTO(student.getStudentID(),student.getName(),student.getAddress(),student.getContactNo(),student.getDOB(),student.getGender()));
         }
         return allStudent;
+
     }
 
     @Override
     public boolean studentExist(String id) throws Exception {
+        //return studentDAO.exists(id);
         return false;
     }
 

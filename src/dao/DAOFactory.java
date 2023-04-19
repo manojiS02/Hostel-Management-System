@@ -1,5 +1,6 @@
 package dao;
 
+import bo.custom.ReservationBO;
 import dao.custom.impl.ReservationDAOImpl;
 import dao.custom.impl.RoomDAOImpl;
 import dao.custom.impl.StudentDAOImpl;

@@ -3,14 +3,18 @@ package bo.custom.impl;
 import bo.custom.RoomBO;
 import dao.DAOFactory;
 import dao.custom.RoomDAO;
+import dao.custom.StudentDAO;
 import dto.RoomDTO;
+import dto.StudentDTO;
 import entity.Room;
+import entity.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class RoomBOImpl implements RoomBO {
     private final RoomDAO roomDAO = DAOFactory.getInstance().getDAO(DAOFactory.DAOType.ROOM);
+
     @Override
     public boolean save(RoomDTO roomDTO) throws Exception {
         return roomDAO.save(new Room(
@@ -44,6 +48,7 @@ public class RoomBOImpl implements RoomBO {
 
     @Override
     public boolean roomExist(String id) throws Exception {
+        //return roomDAO.exists(id);
         return false;
     }
 

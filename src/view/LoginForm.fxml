@@ -8,43 +8,49 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="context" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
    <children>
-      <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/back copy1.jpg" />
-         </image>
-      </ImageView>
-      <JFXTextField fx:id="txtUserName" focusColor="#a50ebd" layoutX="1387.0" layoutY="434.0" prefHeight="38.0" prefWidth="440.0" />
-      <JFXPasswordField fx:id="txtPassword" focusColor="#a50ebd" layoutX="1387.0" layoutY="505.0" prefHeight="38.0" prefWidth="440.0" />
-      <JFXButton fx:id="btnLogin" layoutX="1433.0" layoutY="642.0" onAction="#btnLoginOnAction" prefHeight="43.0" prefWidth="331.0" style="-fx-background-color: A50EBD;" text="Login" textFill="WHITE">
+      <JFXTextField fx:id="txtUserName" focusColor="#a50ebd" layoutX="1407.0" layoutY="454.0" prefHeight="38.0" prefWidth="440.0" />
+      <JFXPasswordField fx:id="txtPassword" focusColor="#a50ebd" layoutX="1407.0" layoutY="525.0" prefHeight="38.0" prefWidth="440.0" />
+      <JFXButton fx:id="btnLogin" layoutX="1453.0" layoutY="662.0" onAction="#btnLoginOnAction" prefHeight="43.0" prefWidth="331.0" style="-fx-background-color: #565051;" text="Login" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
-         </font></JFXButton>
-      <Label layoutX="1387.0" layoutY="413.0" text="UserName" />
-      <Label layoutX="1387.0" layoutY="488.0" text="Password" />
-      <ImageView fitHeight="30.0" fitWidth="42.0" layoutX="1329.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
+         </font>
+      </JFXButton>
+      <Label layoutX="1407.0" layoutY="433.0" text="UserName" />
+      <Label layoutX="1407.0" layoutY="508.0" text="Password" />
+      <ImageView fitHeight="30.0" fitWidth="42.0" layoutX="1349.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/lock copy 2.png" />
+            <Image url="@../assest/lock%20copy%202.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="1328.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="1348.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/profile-user (1) copy 2.png" />
+            <Image url="@../../../../../Hostel%20management/Hostel-Management-System/Hostel-Management-System/Hostel%20Management%20System/src/assest/profile-user%20(1)%20copy%202.png" />
          </image>
       </ImageView>
-      <Label layoutX="1329.0" layoutY="121.0" text="Sign In">
+      <Label layoutX="1349.0" layoutY="141.0" text="Sign In">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <Label layoutX="1328.0" layoutY="176.0" text="Please Enter User Name and Password">
+      <Label layoutX="1348.0" layoutY="196.0" text="Please Enter User Name and Password">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <CheckBox fx:id="chbxShow" layoutX="1689.0" layoutY="556.0" mnemonicParsing="false" onAction="#chbxShowOnAction" text="Show Password" />
+      <CheckBox fx:id="chbxShow" layoutX="1709.0" layoutY="576.0" mnemonicParsing="false" onAction="#chbxShowOnAction" text="Show Password" />
+      <Pane prefHeight="1080.0" prefWidth="1250.0" style="-fx-background-color: #8c8a85;">
+         <children>
+            <ImageView fitHeight="1080.0" fitWidth="1250.0" layoutX="5.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/D24%20logo5.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

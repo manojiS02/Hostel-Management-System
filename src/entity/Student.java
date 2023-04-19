@@ -23,7 +23,7 @@ public class Student implements SuperEntity{
     LocalDate DOB;
     String gender;
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
-    private List<Reservation> reservationList=new ArrayList();
+    private List<Reservartion> reservationList=new ArrayList();
 
     public Student(String studentID, String name, String address, String contactNo, LocalDate DOB, String gender) {
         this.studentID = studentID;
@@ -33,5 +33,4 @@ public class Student implements SuperEntity{
         this.DOB = DOB;
         this.gender = gender;
     }
-
 }

@@ -18,18 +18,18 @@ public class StudentFormController {
     public JFXTextField txtName;
     public JFXTextField txtAddress;
     public JFXTextField txtContactNo;
+    public JFXTextField txtDOB;
+    public JFXButton btnSave;
+    public JFXButton btnDelete;
     public RadioButton rbMale;
     public RadioButton rbFemale;
-    public TableView tblStudent;
+    public TableView<StudentDTO> tblStudent;
     public TableColumn colStudentID;
     public TableColumn colName;
     public TableColumn colAddress;
     public TableColumn colContactNo;
     public TableColumn colDOB;
     public TableColumn colGender;
-    public JFXButton btnSave;
-    public JFXTextField txtDOB;
-    public JFXButton btnDelete;
 
     private final StudentBO studentBO = BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
 
@@ -48,7 +48,9 @@ public class StudentFormController {
         }
 
         tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            //btnDelete.setDisable(newValue == null);
             btnSave.setText(newValue != null ? "Update" : "Save");
+            //btnSave.setDisable(newValue == null);
 
             if (newValue != null) {
                 txtStudentID.setText(newValue.getStudentID());
@@ -62,6 +64,10 @@ public class StudentFormController {
                     rbFemale.setSelected(true);
                 }
 
+                /*txtItemCode.setDisable(false);
+                txtDescription.setDisable(false);
+                txtUnitPrice.setDisable(false);
+                txtQtyOnHand.setDisable(false);*/
             }
         });
     }
@@ -73,7 +79,6 @@ public class StudentFormController {
             tblStudent.getItems().add(new StudentDTO(studentDTO.getStudentID(), studentDTO.getName(),studentDTO.getAddress(),studentDTO.getContactNo(),studentDTO.getDOB(),studentDTO.getGender()));
         };
     }
-
     public void btnSaveOnAction(ActionEvent actionEvent) throws Exception {
         String id = txtStudentID.getText();
 
@@ -147,7 +152,7 @@ public class StudentFormController {
             selectedItem.setGender(gender);
             tblStudent.refresh();
         }
-
+        //itemAddBtn.fire();
         btnSave.setText("Save");
     }
 
@@ -162,10 +167,8 @@ public class StudentFormController {
             tblStudent.getItems().remove(tblStudent.getSelectionModel().getSelectedItem());
             tblStudent.getSelectionModel().clearSelection();
             //initUI();
-
         }
     }
-
     private boolean existItem(String studentID) throws Exception {
         return studentBO.studentExist(studentID);
     }

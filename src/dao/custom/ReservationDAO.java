@@ -1,7 +1,7 @@
 package dao.custom;
 
 import dao.SuperDAO;
-import entity.Reservation;
+import entity.Reservartion;
 
-public interface ReservationDAO extends SuperDAO<Reservation,String> {
+public interface ReservationDAO extends SuperDAO<Reservartion,String> {
 }

@@ -2,6 +2,7 @@ package bo.custom;
 
 import bo.SuperBO;
 import dto.RoomDTO;
+import dto.StudentDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;

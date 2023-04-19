@@ -21,26 +21,26 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class ReservationFormController {
-    public JFXComboBox cmbStudentID;
+    public JFXComboBox<String> cmbStudentID;
+    public JFXButton btnSave;
+    public JFXButton btnDelete;
     public JFXTextField txtName;
     public JFXTextField txtAddress;
     public JFXTextField txtContactNo;
     public JFXTextField txtDOB;
     public JFXTextField txtGender;
-    public JFXComboBox cmbRoomTypeID;
+    public JFXComboBox <String>cmbRoomTypeID;
     public JFXTextField txtType;
     public JFXTextField txtKeyMoney;
     public JFXTextField txtQty;
     public RadioButton rbYes;
     public RadioButton rbNo;
-    public TableView tblReservation;
+    public TableView<ReservationDTO> tblReservation;
     public TableColumn colReservation;
     public TableColumn colDate;
     public TableColumn colStudentID;
-    public TableColumn colStatus;
     public TableColumn colRoomTypeID;
-    public JFXButton btnSave;
-    public JFXButton btnDelete;
+    public TableColumn colStatus;
 
     private final StudentBO studentBO = BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     private final RoomBO roomBO = BOFactory.getInstance().getBO(BOFactory.BOType.ROOM);
@@ -127,6 +127,10 @@ public class ReservationFormController {
         });
 
         tblReservation.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            //btnDelete.setDisable(newValue == null);
+            //btnSave.setText(newValue != null ? "Update" : "Save");
+            //btnSave.setDisable(newValue == null);
+
             if (newValue != null) {
                 cmbStudentID.setValue(newValue.getStudentID());
                 cmbRoomTypeID.setValue(newValue.getRoomTypeID());
@@ -162,6 +166,7 @@ public class ReservationFormController {
         }
     }
 
+
     private void loadAllStudentIDs() throws Exception {
         try {
             /*Get all student*/
@@ -175,14 +180,11 @@ public class ReservationFormController {
             e.printStackTrace();
         }
     }
-
-
     public void btnSaveOnAction(ActionEvent actionEvent) throws IOException {
         String resID = generateNewResID();
         LocalDate date = LocalDate.now();
         String studentID = cmbStudentID.getValue();
         String roomID = cmbRoomTypeID.getValue();
-
         String status = "Yes";
         if (rbNo.isSelected()) {
             status = "No";
@@ -206,9 +208,7 @@ public class ReservationFormController {
         }
         //itemAddBtn.fire();
         btnSave.setText("Save");
-        //txtFieldClear();
     }
-
     private boolean existReservation(String resID) {
         return true;
     }
